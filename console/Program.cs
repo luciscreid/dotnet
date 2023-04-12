@@ -13,6 +13,8 @@ namespace console
             lista.add("Arara");
             lista.add("Belefante");
             lista.add("Mamaco");
+            lista.add("Baleia");
+            lista.add("Tubaraum");
             Debug.Assert(lista.ehvazia() == false);
             Console.WriteLine("Deu Bom!");
 	    }

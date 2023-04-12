@@ -18,7 +18,12 @@
             {
                 primeiro = new Nodo(palavra);
             } else {
-                primeiro.proximo = new Nodo(palavra);
+                Nodo nodoAtual = primeiro;
+                while (nodoAtual.proximo != null)
+                {
+                    nodoAtual = nodoAtual.proximo;
+                }
+                nodoAtual.proximo = new Nodo(palavra);
             }
         }
         
