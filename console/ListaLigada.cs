@@ -14,8 +14,11 @@
 
 
         public void add(string palavra){
-            for(int i = 0; lista[i] != null; i++){
-                lista[i] = new Nodo(palavra);
+            if (primeiro == null)
+            {
+                primeiro = new Nodo(palavra);
+            } else {
+                primeiro.proximo = new Nodo(palavra);
             }
         }
         
