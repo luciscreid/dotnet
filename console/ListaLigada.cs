@@ -49,8 +49,32 @@ namespace console
             return tamanho;
         }
         public int posicao(string palavra) {
-            
-            return 0;
+            int i = 0;
+            Nodo nodoAtual = primeiro;
+            while (nodoAtual != null)
+            {
+                if (nodoAtual.info == palavra)
+                {
+                    return i;
+                }
+                nodoAtual = nodoAtual.proximo;
+                i++;
+            }
+            return -1;
+        }
+
+        internal string Get(int posicao)
+        {
+            Nodo nodoAtual = primeiro;
+            if (nodoAtual != null)
+            {
+                for (int i = 0; i < posicao; i++)
+                {
+                    nodoAtual = nodoAtual.proximo;
+                }
+                return nodoAtual.info;
+            }             
+            return "nao deu";
         }
 
         internal void remove(string v)
@@ -62,16 +86,6 @@ namespace console
         {
             throw new NotImplementedException();
         }
-
-        internal string Get(int v)
-        {
-            throw new NotImplementedException();
-        }
-
-
-        
-        
-        
     }
 
     class Nodo

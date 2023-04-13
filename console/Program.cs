@@ -18,6 +18,8 @@ namespace console
             Debug.Assert(lista.ehvazia() == false);
             Debug.Assert(lista.tamanho() == 5);
             Debug.Assert(lista.posicao("Mamaco") == 2);
+            Debug.Assert(lista.posicao("Arara") == 0);
+            Debug.Assert(lista.posicao("Jade") == -1);
             Debug.Assert(lista.Get(2) == "Mamaco");
             lista.remove("Baleia");
             Debug.Assert(lista.tamanho() == 4);
