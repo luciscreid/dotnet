@@ -23,10 +23,12 @@ namespace console
             Debug.Assert(lista.Get(2) == "Mamaco");
             lista.remove("Baleia");
             lista.remove("Belefante");
-            Debug.Assert(lista.tamanho() == 4);
+            Debug.Assert(lista.tamanho() == 3);
             Debug.Assert(lista.posicao("Baleia") == -1);
             lista.add("Baleia", 3);
+            lista.add("Jade", 4);
 
+            Console.WriteLine("lista" + lista);
             Console.WriteLine("Deu Bom!");
 	    }
     }

@@ -90,9 +90,16 @@ namespace console
             }
         }
 
-        internal void add(string palaravra, int posicao)
+        internal void add(string palavra, int posicao)
         {
-            throw new NotImplementedException();
+            int i = 0;
+            Nodo nodoAtual = primeiro;
+            while (i < posicao)
+            {
+                nodoAtual = nodoAtual.proximo;
+                i++;
+            }
+            nodoAtual = new Nodo(palavra);
         }
     }
 
