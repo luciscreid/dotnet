@@ -77,12 +77,20 @@ namespace console
             return "nao deu";
         }
 
-        internal void remove(string v)
+        internal void remove(string palavra)
         {
-            throw new NotImplementedException();
+            Nodo nodoAtual = primeiro;
+            if (nodoAtual != null)
+            {
+                while (nodoAtual.info != palavra)
+                {
+                    nodoAtual = nodoAtual.proximo;
+                }
+                nodoAtual = nodoAtual.proximo;
+            }
         }
 
-        internal void add(string v1, int v2)
+        internal void add(string palaravra, int posicao)
         {
             throw new NotImplementedException();
         }

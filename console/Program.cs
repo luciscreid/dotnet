@@ -22,6 +22,7 @@ namespace console
             Debug.Assert(lista.posicao("Jade") == -1);
             Debug.Assert(lista.Get(2) == "Mamaco");
             lista.remove("Baleia");
+            lista.remove("Belefante");
             Debug.Assert(lista.tamanho() == 4);
             Debug.Assert(lista.posicao("Baleia") == -1);
             lista.add("Baleia", 3);
