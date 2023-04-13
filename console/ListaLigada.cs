@@ -1,4 +1,7 @@
-﻿namespace console
+﻿using System;
+using System.Diagnostics;
+
+namespace console
 {
     class ListaLigada
     {
@@ -25,6 +28,36 @@
                 }
                 nodoAtual.proximo = new Nodo(palavra);
             }
+        }
+
+        internal void remove(string v)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal string Get(int v)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int tamanho()
+        {
+            int tamanho = 0;
+            if (primeiro == null)
+            {
+                return tamanho = 0;
+            }
+            else
+            {
+                tamanho = 1;
+                Nodo nodoAtual = primeiro;
+                while (nodoAtual.proximo != null)
+                {
+                    nodoAtual = nodoAtual.proximo;
+                    tamanho++;
+                }
+            }
+            return tamanho;
         }
         
         public int posicao(string palavra) {
