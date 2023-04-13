@@ -29,17 +29,6 @@ namespace console
                 nodoAtual.proximo = new Nodo(palavra);
             }
         }
-
-        internal void remove(string v)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal string Get(int v)
-        {
-            throw new NotImplementedException();
-        }
-
         public int tamanho()
         {
             int tamanho = 0;
@@ -59,11 +48,28 @@ namespace console
             }
             return tamanho;
         }
-        
         public int posicao(string palavra) {
             
             return 0;
         }
+
+        internal void remove(string v)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void add(string v1, int v2)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal string Get(int v)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        
         
         
     }
