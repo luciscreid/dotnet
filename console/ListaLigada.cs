@@ -97,6 +97,7 @@ namespace console
             while (i < posicao)
             {
                 nodoAtual = nodoAtual.proximo;
+                
                 i++;
             }
             nodoAtual = new Nodo(palavra);

@@ -27,6 +27,8 @@ namespace console
             Debug.Assert(lista.posicao("Baleia") == -1);
             lista.add("Baleia", 3);
             lista.add("Jade", 4);
+            Debug.Assert(lista.posicao("Jade") == 4);
+            Debug.Assert(lista.posicao("Baleia") == 3);
 
             Console.WriteLine("lista" + lista);
             Console.WriteLine("Deu Bom!");
