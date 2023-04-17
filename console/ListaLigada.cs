@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace console
 {
-    class ListaLigada
+    public class ListaLigada
     {
         private Nodo primeiro;
 
@@ -63,7 +63,7 @@ namespace console
             return -1;
         }
 
-        internal string Get(int posicao)
+        public string Get(int posicao)
         {
             Nodo nodoAtual = primeiro;
             if (nodoAtual != null)
@@ -77,20 +77,39 @@ namespace console
             return "nao deu";
         }
 
-        internal void remove(string palavra)
+        public void remove(string palavra)
         {
+            if (primeiro != null)
+            {
+                if (primeiro.info == palavra)
+                {
+                    primeiro = primeiro.proximo;
+                    return;
+                }
+            }
+
             Nodo nodoAtual = primeiro;
             if (nodoAtual != null)
             {
-                while (nodoAtual.info != palavra)
+                Nodo nodoAnterior = nodoAtual;
+                while (nodoAtual.proximo != null)
                 {
+                    if (nodoAtual.info == palavra)
+                    {
+                        break;
+                    }
+
+                    nodoAnterior = nodoAtual;
                     nodoAtual = nodoAtual.proximo;
                 }
-                nodoAtual = nodoAtual.proximo;
+                Nodo temp = nodoAtual.proximo;
+                nodoAtual = nodoAnterior;
+                nodoAtual.proximo = temp;
+
             }
         }
 
-        internal void add(string palavra, int posicao)
+        public void add(string palavra, int posicao)
         {
             int i = 0;
             Nodo nodoAtual = primeiro;
@@ -111,6 +130,11 @@ namespace console
         public Nodo(string info)
         {
             this.info = info;
+        }
+
+        public override string ToString()
+        {
+            return $"Valor do nodo: {info}";
         }
     }
 }
