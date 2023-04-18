@@ -7,20 +7,25 @@ namespace console
     {
         private Nodo primeiro;
 
-        public bool ehvazia() {
+        public bool ehvazia()
+        {
             bool ehvazia = false;
-            if(primeiro == null){
+            if (primeiro == null)
+            {
                 ehvazia = true;
             }
             return ehvazia;
         }
 
 
-        public void add(string palavra){
+        public void add(string palavra)
+        {
             if (primeiro == null)
             {
                 primeiro = new Nodo(palavra);
-            } else {
+            }
+            else
+            {
                 Nodo nodoAtual = primeiro;
                 while (nodoAtual.proximo != null)
                 {
@@ -48,7 +53,8 @@ namespace console
             }
             return tamanho;
         }
-        public int posicao(string palavra) {
+        public int posicao(string palavra)
+        {
             int i = 0;
             Nodo nodoAtual = primeiro;
             while (nodoAtual != null)
@@ -65,6 +71,19 @@ namespace console
 
         public string Get(int posicao)
         {
+            var Nodo = GetNodo(posicao);
+
+            return Nodo?.info;
+
+            //if (Nodo == null)
+            //{
+            //    return null;
+            //}
+            //else return Nodo.info;
+        }
+
+        private Nodo GetNodo(int posicao)
+        {
             Nodo nodoAtual = primeiro;
             if (nodoAtual != null)
             {
@@ -72,9 +91,9 @@ namespace console
                 {
                     nodoAtual = nodoAtual.proximo;
                 }
-                return nodoAtual.info;
-            }             
-            return "nao deu";
+                return nodoAtual;
+            }
+            return null;
         }
 
         public void remove(string palavra)
@@ -111,17 +130,31 @@ namespace console
 
         public void add(string palavra, int posicao)
         {
-            int i = 0;
-            Nodo nodoAtual = primeiro;
-            while (i < posicao)
+            if (primeiro == null)
             {
-                nodoAtual = nodoAtual.proximo;
-                
-                i++;
+                primeiro = new Nodo(palavra);
             }
-            nodoAtual = new Nodo(palavra);
+            else
+            {
+                var nodoAtual = primeiro;
+                Nodo nodoAnterior = null;
+                int i = 0;
+                while (i < posicao)
+                {
+                    nodoAnterior = nodoAtual;
+                    nodoAtual = nodoAtual.proximo;
+                    i++;
+                }
+                var temp = nodoAtual;
+                nodoAtual = new Nodo(palavra);
+                nodoAnterior.proximo = nodoAtual;
+                nodoAtual.proximo = temp;
+
+            }
         }
+
     }
+
 
     class Nodo
     {

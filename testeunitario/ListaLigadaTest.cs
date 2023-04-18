@@ -65,6 +65,45 @@ namespace testeunitario
         }
 
         [Fact]
+        public void Add_DeveAdicionarNaListaVaziaPosicaoInvalida()
+        {
+            //arrange
+            var lista = new ListaLigada();
+
+            // act
+            lista.add("Baleia", -2);
+
+            // assert
+            Assert.Equal(0, lista.posicao("Baleia"));
+        }
+
+        [Fact]
+        public void Add_DeveAdicionarNaListaVaziaPosicaoErrada()
+        {
+            //arrange
+            var lista = new ListaLigada();
+
+            // act
+            lista.add("Arara", 5);
+
+            // assert
+            Assert.Equal(0, lista.posicao("Arara"));
+        }
+
+        [Fact]
+        public void Add_DeveAdicionarNaListaVazia()
+        {
+            //arrange
+            var lista = new ListaLigada();
+            
+            // act
+            lista.add("Baleia", 0);
+
+            // assert
+            Assert.Equal(0, lista.posicao("Baleia"));
+        }
+
+        [Fact]
         public void Add_DeveAdicionarNaPosicao()
         {
             //arrange
@@ -72,15 +111,13 @@ namespace testeunitario
             lista.add("Arara");
             lista.add("Belefante");
             lista.add("Mamaco");
-            lista.add("Baleia");
             lista.add("Tubaraum");
+            lista.add("Jade");
 
             // act
             lista.add("Baleia", 3);
-            lista.add("Jade", 4);
 
             // assert
-            Assert.Equal(4, lista.posicao("Jade"));
             Assert.Equal(3, lista.posicao("Baleia"));
         }
     }
