@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace console
 {
-    public class ListaLigada
+    public class ListaLigada : ILista
     {
         private Nodo primeiro;
 
@@ -151,23 +151,21 @@ namespace console
                 nodoAtual.proximo = temp;
 
             }
-        }
+        }   
 
-    }
-
-
-    class Nodo
-    {
-        public Nodo proximo { get; set; }
-        public string info { get; set; }
-        public Nodo(string info)
+        class Nodo
         {
-            this.info = info;
-        }
+            public Nodo proximo { get; set; }
+            public string info { get; set; }
+            public Nodo(string info)
+            {
+                this.info = info;
+            }
 
-        public override string ToString()
-        {
-            return $"Valor do nodo: {info}";
+            public override string ToString()
+            {
+                return $"Valor do nodo: {info}";
+            }
         }
     }
 }
