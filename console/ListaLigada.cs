@@ -151,7 +151,8 @@ namespace console
                 nodoAtual.proximo = temp;
 
             }
-        }   
+        }
+
 
         class Nodo
         {

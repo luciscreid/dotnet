@@ -12,7 +12,19 @@ namespace console
 
         public void add(string palavra)
         {
-            throw new NotImplementedException();
+            if(primeiro == null)
+            {
+                primeiro = new Nodo(palavra);
+            }
+            else
+            {
+                var nodoAtual = primeiro;
+                while(nodoAtual.proximo != null)
+                {
+                    nodoAtual = nodoAtual.proximo;
+                }
+                nodoAtual.proximo = new Nodo(palavra);
+            }
         }
 
         public void add(string palavra, int posicao)
@@ -47,7 +59,22 @@ namespace console
 
         public int tamanho()
         {
-            throw new NotImplementedException();
+            int tamanho = 0;
+            if (primeiro == null)
+            {
+                return tamanho = 0;
+            }
+            else
+            {
+                tamanho = 1;
+                Nodo nodoAtual = primeiro;
+                while (nodoAtual.proximo != null)
+                {
+                    nodoAtual = nodoAtual.proximo;
+                    tamanho++;
+                }
+            }
+            return tamanho;
         }
 
         class Nodo

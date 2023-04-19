@@ -125,7 +125,7 @@ namespace testeunitario
             lista.add("Tubaraum");
 
             // act
-            int Get = lista.Get(3);
+            var Get = lista.Get(3);
 
             // assert
             Assert.Equal("Baleia", Get);
@@ -143,7 +143,7 @@ namespace testeunitario
             lista.add("Tubaraum");
 
             // act
-            int Get = lista.Get(10);
+            var Get = lista.Get(10);
 
             // assert
             Assert.Null(Get);
@@ -156,7 +156,7 @@ namespace testeunitario
             var lista = new ListaDuplamenteLigada();
 
             // act
-            int Get = lista.Get(0);
+            var Get = lista.Get(0);
 
             // assert
             Assert.Null(Get);
