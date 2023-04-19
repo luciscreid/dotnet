@@ -39,7 +39,7 @@ namespace console
             }
             
             
-
+            Console.WriteLine("Deu bom!");
 
 
 
