@@ -7,31 +7,42 @@ namespace console
     {
         static void Main(string[] args)
         {
-            var lista = new ListaLigada();
+            int[][] matriz = new int[3][];
 
-            Debug.Assert(lista.ehvazia() == true);
-            lista.add("Arara");
-            lista.add("Belefante");
-            lista.add("Mamaco");
-            lista.add("Baleia");
-            lista.add("Tubaraum");
-            Debug.Assert(lista.ehvazia() == false);
-            Debug.Assert(lista.tamanho() == 5);
-            Debug.Assert(lista.posicao("Mamaco") == 2);
-            Debug.Assert(lista.posicao("Arara") == 0);
-            Debug.Assert(lista.posicao("Jade") == -1);
-            Debug.Assert(lista.Get(2) == "Mamaco");
-            lista.remove("Baleia");
-            lista.remove("Belefante");
-            Debug.Assert(lista.tamanho() == 3);
-            Debug.Assert(lista.posicao("Baleia") == -1);
-            lista.add("Baleia", 3);
-            lista.add("Jade", 4);
-            Debug.Assert(lista.posicao("Jade") == 4);
-            Debug.Assert(lista.posicao("Baleia") == 3);
+            matriz[0] = new int[3];
+            matriz[0][0] = 0;
+            matriz[0][1] = 1;
+            matriz[0][2] = 2;
 
-            Console.WriteLine("lista" + lista);
-            Console.WriteLine("Deu Bom!");
-	    }
+            matriz[0] = new int[3] { 0, 1, 2 };
+            matriz[1] = new int[3] { 3, 4, 5 };
+            matriz[2] = new int[3] { 6, 7, 8 };
+
+            Console.Write($"{matriz[0][0]}, {matriz[0][1]}, {matriz[0][2]}\n");
+            Console.Write($"{matriz[1][0]}, {matriz[1][1]}, {matriz[1][2]}\n");
+            Console.Write($"{matriz[2][0]}, {matriz[2][1]}, {matriz[2][2]}\n");
+
+            int[][] matrizMaior = new int[10][];
+
+            
+            
+            for (int y = 0; y < matrizMaior.Length; y++)
+            {
+                matrizMaior[y] = new int[10];
+                for (int x = 0; x < matrizMaior.Length; x++)
+                {
+                    matrizMaior[y][x] = y + x;
+                    Console.Write($"V:{matrizMaior[y][x]},Y:{y},X:{x}  ");
+                    
+                }
+                Console.WriteLine();
+            }
+            
+            
+
+
+
+
+        }
     }
 }
