@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mvc", "mvc\mvc.csproj", "{A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "testeunitario", "testeunitario\testeunitario.csproj", "{06344184-B2AF-4487-B592-859E13069301}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wpf", "wpf\wpf.csproj", "{3992D0F8-9224-4DA0-B6D1-249A4C2B44E1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,18 @@ Global
 		{06344184-B2AF-4487-B592-859E13069301}.Release|x64.Build.0 = Release|Any CPU
 		{06344184-B2AF-4487-B592-859E13069301}.Release|x86.ActiveCfg = Release|Any CPU
 		{06344184-B2AF-4487-B592-859E13069301}.Release|x86.Build.0 = Release|Any CPU
+		{3992D0F8-9224-4DA0-B6D1-249A4C2B44E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3992D0F8-9224-4DA0-B6D1-249A4C2B44E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3992D0F8-9224-4DA0-B6D1-249A4C2B44E1}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3992D0F8-9224-4DA0-B6D1-249A4C2B44E1}.Debug|x64.Build.0 = Debug|Any CPU
+		{3992D0F8-9224-4DA0-B6D1-249A4C2B44E1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3992D0F8-9224-4DA0-B6D1-249A4C2B44E1}.Debug|x86.Build.0 = Debug|Any CPU
+		{3992D0F8-9224-4DA0-B6D1-249A4C2B44E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3992D0F8-9224-4DA0-B6D1-249A4C2B44E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3992D0F8-9224-4DA0-B6D1-249A4C2B44E1}.Release|x64.ActiveCfg = Release|Any CPU
+		{3992D0F8-9224-4DA0-B6D1-249A4C2B44E1}.Release|x64.Build.0 = Release|Any CPU
+		{3992D0F8-9224-4DA0-B6D1-249A4C2B44E1}.Release|x86.ActiveCfg = Release|Any CPU
+		{3992D0F8-9224-4DA0-B6D1-249A4C2B44E1}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
