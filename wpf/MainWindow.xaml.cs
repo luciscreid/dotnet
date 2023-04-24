@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,13 +44,66 @@ namespace wpf
                 new int[] {1,1,1,1,1,1,1},
             };
 
-            for (int i = 0; i < matriz.Length; i++)
+            //for (int i = 0; i < matriz.Length; i++)
+            //{
+            //    for (int j = 0; j < matriz[i].Length; j++)
+            //    {
+            //        var posicaoLado = tamanho * j;
+            //        var posicaoCima = tamanho * i;
+            //        if (matriz[i][j] == 1)
+            //        {
+            //            var quadrado = CriaQuadrado(tamanho, preto);
+            //            Canvas.SetLeft(quadrado, posicaoLado);
+            //            Canvas.SetTop(quadrado, posicaoCima);
+            //            quadrinho.Children.Add(quadrado);
+
+            //        }
+            //        else
+            //        {
+            //            var quadrado = CriaQuadrado(tamanho, branco);
+            //            Canvas.SetLeft(quadrado, posicaoLado);
+            //            Canvas.SetTop(quadrado, posicaoCima);
+            //            quadrinho.Children.Add(quadrado);
+            //        }
+            //    }
+            //}
+            var linhas = File.ReadAllLines("./labirinto.txt");
+
+            Console.WriteLine(linhas);
+
+            console.Text = string.Join('\n', linhas);
+
+
+            var dimensao = linhas[0].Split(" ");
+            var altura = int.Parse(dimensao[1]);
+            var largura = int.Parse(dimensao[2]);
+
+            int[][] matrizLab = new int[altura][];
+            for (int y = 0; y < altura; y++)
             {
-                for (int j = 0; j < matriz[i].Length; j++)
+                var linhaAtual = linhas[y + 3];
+                matrizLab[y] = new int[largura];
+                for (int x = 0; x < largura; x++)
+                {
+                    if (linhaAtual[x] == '*')
+                    {
+                        matrizLab[y][x] = 1;
+                    }
+                    else
+                    {
+                        matrizLab[y][x] = 0;
+                    }
+
+                }
+            }
+
+            for (int i = 0; i < matrizLab.Length; i++)
+            {
+                for (int j = 0; j < matrizLab[i].Length; j++)
                 {
                     var posicaoLado = tamanho * j;
                     var posicaoCima = tamanho * i;
-                    if (matriz[i][j] == 1)
+                    if (matrizLab[i][j] == 1)
                     {
                         var quadrado = CriaQuadrado(tamanho, preto);
                         Canvas.SetLeft(quadrado, posicaoLado);
@@ -66,6 +120,7 @@ namespace wpf
                     }
                 }
             }
+
 
 
             //Canvas.SetLeft(quadradodolado, 20);
