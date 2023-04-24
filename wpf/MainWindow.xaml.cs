@@ -21,10 +21,11 @@ namespace wpf
     /// </summary>
     public partial class MainWindow : Window
     {
-        private DateTime time = DateTime.Now;
+        private DateTime time;
         private int xRobo;
         private int yRobo;
         private int tamanho = 20;
+        private bool jaFoi = false;
         public MainWindow()
         {
             InitializeComponent();
@@ -76,25 +77,37 @@ namespace wpf
             var tempoSalvo = TimeSpan.FromTicks(time.Ticks);
             var tempoAtual = TimeSpan.FromTicks(DateTime.Now.Ticks);
 
-
-            if (tempoAtual.Subtract(tempoSalvo).Seconds < 7)
+            if (tempoAtual.Subtract(tempoSalvo).Seconds > 1 || time == default)
             {
-                ImprimeQuadrado(xRobo, yRobo, Brushes.Red);
+                ExecutaAcao();
+                time = DateTime.Now;
+            }
+        }
 
+        private void ExecutaAcao()
+        {
+            ImprimeQuadrado(xRobo, yRobo, Brushes.White);
+            if (xRobo == 1 && yRobo == 1 && jaFoi == false)
+            {
+                xRobo++;
+            }
+            else if (xRobo == 2 && yRobo == 1)
+            {
+                xRobo--;
+                jaFoi = true;
+            }
+            else if (xRobo == 1 && yRobo == 1 && jaFoi == true)
+            {
+                yRobo++;
+            }
+            else if (xRobo == 1 && yRobo == 2)
+            {
+                yRobo--;
+                jaFoi = false;
             }
 
-            else
-            {
-                ImprimeQuadrado(xRobo, yRobo, Brushes.DarkRed);
-
-            }
-            //if (tempoAtual.Subtract(tempoSalvo).Seconds < 5)
-            //{
-            //    var quadrado = CriaQuadrado(tamanho, Brushes.DarkRed);
-            //    Canvas.SetLeft(quadrado, xRobo * tamanho);
-            //    Canvas.SetTop(quadrado, yRobo * tamanho);
-            //    quadrinho.Children.Add(quadrado);
-            //}
+            ImprimeQuadrado(xRobo, yRobo, Brushes.DarkRed);
+            
         }
 
         private void ImprimeQuadrado(int x, int y, SolidColorBrush cor)
