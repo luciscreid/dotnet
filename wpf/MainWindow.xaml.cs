@@ -28,6 +28,7 @@ namespace wpf
             var tamanho = 20;
             var preto = Brushes.Black;
             var branco = Brushes.White;
+            var vermelho = Brushes.Red;
             //var quadrado = CriaQuadrado(tamanho, preto);
             //var quadradodolado = CriaQuadrado(tamanho, preto);
 
@@ -44,29 +45,6 @@ namespace wpf
                 new int[] {1,1,1,1,1,1,1},
             };
 
-            //for (int i = 0; i < matriz.Length; i++)
-            //{
-            //    for (int j = 0; j < matriz[i].Length; j++)
-            //    {
-            //        var posicaoLado = tamanho * j;
-            //        var posicaoCima = tamanho * i;
-            //        if (matriz[i][j] == 1)
-            //        {
-            //            var quadrado = CriaQuadrado(tamanho, preto);
-            //            Canvas.SetLeft(quadrado, posicaoLado);
-            //            Canvas.SetTop(quadrado, posicaoCima);
-            //            quadrinho.Children.Add(quadrado);
-
-            //        }
-            //        else
-            //        {
-            //            var quadrado = CriaQuadrado(tamanho, branco);
-            //            Canvas.SetLeft(quadrado, posicaoLado);
-            //            Canvas.SetTop(quadrado, posicaoCima);
-            //            quadrinho.Children.Add(quadrado);
-            //        }
-            //    }
-            //}
             var linhas = File.ReadAllLines("./labirinto.txt");
 
             Console.WriteLine(linhas);
@@ -78,25 +56,25 @@ namespace wpf
             var altura = int.Parse(dimensao[1]);
             var largura = int.Parse(dimensao[2]);
 
-            int[][] matrizLab = new int[altura][];
-            for (int y = 0; y < altura; y++)
-            {
-                var linhaAtual = linhas[y + 3];
-                matrizLab[y] = new int[largura];
-                for (int x = 0; x < largura; x++)
-                {
-                    if (linhaAtual[x] == '*')
-                    {
-                        matrizLab[y][x] = 1;
-                    }
-                    else
-                    {
-                        matrizLab[y][x] = 0;
-                    }
+            int[][] matrizLab = ImportaMatrizDoArquivo(linhas, altura, largura);
+            
+            ImprimeMatriz(tamanho, preto, branco, matrizLab);
 
-                }
-            }
 
+            var posicaoRobo = linhas[1].Split(" ");
+            var xRobo = int.Parse(posicaoRobo[1]);
+            var yRobo = int.Parse(posicaoRobo[2]);
+
+            var quadrado = CriaQuadrado(tamanho, vermelho);
+            Canvas.SetLeft(quadrado, xRobo*tamanho);
+            Canvas.SetTop(quadrado, yRobo*tamanho);
+            quadrinho.Children.Add(quadrado);
+
+
+        }
+
+        private void ImprimeMatriz(int tamanho, SolidColorBrush preto, SolidColorBrush branco, int[][] matrizLab)
+        {
             for (int i = 0; i < matrizLab.Length; i++)
             {
                 for (int j = 0; j < matrizLab[i].Length; j++)
@@ -120,15 +98,30 @@ namespace wpf
                     }
                 }
             }
+        }
 
+        private static int[][] ImportaMatrizDoArquivo(string[] linhas, int altura, int largura)
+        {
+            int[][] matrizLab = new int[altura][];
+            for (int y = 0; y < altura; y++)
+            {
+                var linhaAtual = linhas[y + 3];
+                matrizLab[y] = new int[largura];
+                for (int x = 0; x < largura; x++)
+                {
+                    if (linhaAtual[x] == '*')
+                    {
+                        matrizLab[y][x] = 1;
+                    }
+                    else
+                    {
+                        matrizLab[y][x] = 0;
+                    }
 
+                }
+            }
 
-            //Canvas.SetLeft(quadradodolado, 20);
-            //Canvas.SetTop(quadradodolado, 20);
-
-
-            //quadrinho.Children.Add(quadrado);
-            //quadrinho.Children.Add(quadradodolado);
+            return matrizLab;
         }
 
         private static Rectangle CriaQuadrado(int tamanho, SolidColorBrush cor)
