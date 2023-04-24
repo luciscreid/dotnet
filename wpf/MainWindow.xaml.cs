@@ -21,11 +21,14 @@ namespace wpf
     /// </summary>
     public partial class MainWindow : Window
     {
-
+        private DateTime time = DateTime.Now;
+        private int xRobo;
+        private int yRobo;
+        private int tamanho = 20;
         public MainWindow()
         {
             InitializeComponent();
-            var tamanho = 20;
+
             var preto = Brushes.Black;
             var branco = Brushes.White;
             var vermelho = Brushes.Red;
@@ -57,20 +60,49 @@ namespace wpf
             var largura = int.Parse(dimensao[2]);
 
             int[][] matrizLab = ImportaMatrizDoArquivo(linhas, altura, largura);
-            
+
             ImprimeMatriz(tamanho, preto, branco, matrizLab);
 
 
             var posicaoRobo = linhas[1].Split(" ");
-            var xRobo = int.Parse(posicaoRobo[1]);
-            var yRobo = int.Parse(posicaoRobo[2]);
+            xRobo = int.Parse(posicaoRobo[1]);
+            yRobo = int.Parse(posicaoRobo[2]);
 
-            var quadrado = CriaQuadrado(tamanho, vermelho);
-            Canvas.SetLeft(quadrado, xRobo*tamanho);
-            Canvas.SetTop(quadrado, yRobo*tamanho);
+            CompositionTarget.Rendering += Draw;
+        }
+
+        private void Draw(object sender, EventArgs e)
+        {
+            var tempoSalvo = TimeSpan.FromTicks(time.Ticks);
+            var tempoAtual = TimeSpan.FromTicks(DateTime.Now.Ticks);
+
+
+            if (tempoAtual.Subtract(tempoSalvo).Seconds < 7)
+            {
+                ImprimeQuadrado(xRobo, yRobo, Brushes.Red);
+
+            }
+
+            else
+            {
+                ImprimeQuadrado(xRobo, yRobo, Brushes.DarkRed);
+
+            }
+            //if (tempoAtual.Subtract(tempoSalvo).Seconds < 5)
+            //{
+            //    var quadrado = CriaQuadrado(tamanho, Brushes.DarkRed);
+            //    Canvas.SetLeft(quadrado, xRobo * tamanho);
+            //    Canvas.SetTop(quadrado, yRobo * tamanho);
+            //    quadrinho.Children.Add(quadrado);
+            //}
+        }
+
+        private void ImprimeQuadrado(int x, int y, SolidColorBrush cor)
+        {
+            var quadrado = CriaQuadrado(tamanho,cor);
+            Canvas.SetLeft(quadrado, x * tamanho);
+            Canvas.SetTop(quadrado, y * tamanho);
             quadrinho.Children.Add(quadrado);
-
-
         }
 
         private void ImprimeMatriz(int tamanho, SolidColorBrush preto, SolidColorBrush branco, int[][] matrizLab)
