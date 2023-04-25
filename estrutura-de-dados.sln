@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "testeunitario", "testeunita
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wpf", "wpf\wpf.csproj", "{3992D0F8-9224-4DA0-B6D1-249A4C2B44E1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "maze", "maze\maze.csproj", "{A47B2B30-E826-4CE1-8691-1AA1308015A9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,18 @@ Global
 		{3992D0F8-9224-4DA0-B6D1-249A4C2B44E1}.Release|x64.Build.0 = Release|Any CPU
 		{3992D0F8-9224-4DA0-B6D1-249A4C2B44E1}.Release|x86.ActiveCfg = Release|Any CPU
 		{3992D0F8-9224-4DA0-B6D1-249A4C2B44E1}.Release|x86.Build.0 = Release|Any CPU
+		{A47B2B30-E826-4CE1-8691-1AA1308015A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A47B2B30-E826-4CE1-8691-1AA1308015A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A47B2B30-E826-4CE1-8691-1AA1308015A9}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A47B2B30-E826-4CE1-8691-1AA1308015A9}.Debug|x64.Build.0 = Debug|Any CPU
+		{A47B2B30-E826-4CE1-8691-1AA1308015A9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A47B2B30-E826-4CE1-8691-1AA1308015A9}.Debug|x86.Build.0 = Debug|Any CPU
+		{A47B2B30-E826-4CE1-8691-1AA1308015A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A47B2B30-E826-4CE1-8691-1AA1308015A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A47B2B30-E826-4CE1-8691-1AA1308015A9}.Release|x64.ActiveCfg = Release|Any CPU
+		{A47B2B30-E826-4CE1-8691-1AA1308015A9}.Release|x64.Build.0 = Release|Any CPU
+		{A47B2B30-E826-4CE1-8691-1AA1308015A9}.Release|x86.ActiveCfg = Release|Any CPU
+		{A47B2B30-E826-4CE1-8691-1AA1308015A9}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

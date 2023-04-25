@@ -55,7 +55,6 @@ namespace wpf
 
             console.Text = string.Join('\n', linhas);
 
-
             var dimensao = linhas[0].Split(" ");
             var altura = int.Parse(dimensao[1]);
             var largura = int.Parse(dimensao[2]);
