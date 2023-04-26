@@ -8,6 +8,14 @@ namespace maze
 {
     public class RoboVerde : IRobo
     {
+        public Passo[] PassosRoboVerde { get; set; }
+        public int IndicePassoAtualRoboVerde { get; set; } = 0;
+        public int[][] MatrizRoboVerde { get; } = new int[][]
+{
+    new int[] { 1, 1, 1, 1, 1, 1, 1 },
+    new int[] { 1, 0, 0, 0, 0, 0, 0 },
+    new int[] { 1, 1, 1, 1, 1, 1, 1 },
+};
         private Posicao _posicaoInicial;
 
         public RoboVerde(int x, int y)

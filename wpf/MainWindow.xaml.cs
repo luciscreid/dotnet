@@ -27,14 +27,7 @@ namespace wpf
         private int yRobo;
         private int tamanho = 20;
         private bool jaFoi = false;
-        private Passo[] passosRoboVerde;
-        private int indicePassoAtualRoboVerde = 0;
-        private int[][] matrizRoboVerde = new int[][]
-            {
-                new int[] {1,1,1,1,1,1,1},
-                new int[] {1,0,0,0,0,0,0},
-                new int[] {1,1,1,1,1,1,1},
-            };
+        private RoboVerde roboVerde = new RoboVerde(1, 1);
 
         public MainWindow()
         {
@@ -46,10 +39,9 @@ namespace wpf
 
         private void RoboVerde()
         {
-            var labirinto = new Labirinto(matrizRoboVerde, 3, 7);
-            var robo = new RoboVerde(1, 1);
+            var labirinto = new Labirinto(roboVerde.MatrizRoboVerde, 3, 7);
 
-            passosRoboVerde = robo.GeraPassos(labirinto);
+            roboVerde.PassosRoboVerde = roboVerde.GeraPassos(labirinto);
         }
 
         private void Draw(object sender, EventArgs e)
@@ -67,14 +59,14 @@ namespace wpf
         private void ExecutaAcao()
         {
             //ImprimeAntigo();
-            if (passosRoboVerde.Length == indicePassoAtualRoboVerde)
+            if (roboVerde.PassosRoboVerde.Length == roboVerde.IndicePassoAtualRoboVerde)
                 MessageBox.Show("Congrats bro!!");
             else
             {
-                var passoAtualRoboVerde = passosRoboVerde[indicePassoAtualRoboVerde++];
+                var passoAtualRoboVerde = roboVerde.PassosRoboVerde[roboVerde.IndicePassoAtualRoboVerde++];
 
 
-                ImprimeMatriz(tamanho, matrizRoboVerde);
+                ImprimeMatriz(tamanho, roboVerde.MatrizRoboVerde);
                 ImprimeQuadrado(passoAtualRoboVerde.X, passoAtualRoboVerde.Y, Brushes.Green);
             }
         }
