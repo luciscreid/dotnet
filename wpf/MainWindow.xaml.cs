@@ -1,4 +1,5 @@
-﻿using System;
+﻿using maze;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -26,49 +27,29 @@ namespace wpf
         private int yRobo;
         private int tamanho = 20;
         private bool jaFoi = false;
-        public MainWindow()
-        {
-            InitializeComponent();
-
-            var preto = Brushes.Black;
-            var branco = Brushes.White;
-            var vermelho = Brushes.Red;
-            //var quadrado = CriaQuadrado(tamanho, preto);
-            //var quadradodolado = CriaQuadrado(tamanho, preto);
-
-            var matriz = new int[][]
+        private Passo[] passosRoboVerde;
+        private int indicePassoAtualRoboVerde = 0;
+        private int[][] matrizRoboVerde = new int[][]
             {
                 new int[] {1,1,1,1,1,1,1},
-                new int[] {1,0,0,0,0,0,1},
-                new int[] {1,0,0,0,0,0,1},
-                new int[] {1,0,0,0,0,0,1},
-                new int[] {1,0,0,0,0,0,1},
-                new int[] {1,0,0,0,0,0,1},
-                new int[] {1,0,0,0,0,0,1},
-                new int[] {1,0,0,0,0,0,1},
+                new int[] {1,0,0,0,0,0,0},
                 new int[] {1,1,1,1,1,1,1},
             };
 
-            var linhas = File.ReadAllLines("./labirinto.txt");
-
-            Console.WriteLine(linhas);
-
-            console.Text = string.Join('\n', linhas);
-
-            var dimensao = linhas[0].Split(" ");
-            var altura = int.Parse(dimensao[1]);
-            var largura = int.Parse(dimensao[2]);
-
-            int[][] matrizLab = ImportaMatrizDoArquivo(linhas, altura, largura);
-
-            ImprimeMatriz(tamanho, preto, branco, matrizLab);
-
-
-            var posicaoRobo = linhas[1].Split(" ");
-            xRobo = int.Parse(posicaoRobo[1]);
-            yRobo = int.Parse(posicaoRobo[2]);
+        public MainWindow()
+        {
+            InitializeComponent();
+            RoboVerde();
 
             CompositionTarget.Rendering += Draw;
+        }
+
+        private void RoboVerde()
+        {
+            var labirinto = new Labirinto(matrizRoboVerde, 3, 7);
+            var robo = new RoboVerde(1, 1);
+
+            passosRoboVerde = robo.GeraPassos(labirinto);
         }
 
         private void Draw(object sender, EventArgs e)
@@ -85,39 +66,28 @@ namespace wpf
 
         private void ExecutaAcao()
         {
-            ImprimeQuadrado(xRobo, yRobo, Brushes.White);
-            if (xRobo == 1 && yRobo == 1 && jaFoi == false)
+            //ImprimeAntigo();
+            if (passosRoboVerde.Length == indicePassoAtualRoboVerde)
+                MessageBox.Show("Congrats bro!!");
+            else
             {
-                xRobo++;
-            }
-            else if (xRobo == 2 && yRobo == 1)
-            {
-                xRobo--;
-                jaFoi = true;
-            }
-            else if (xRobo == 1 && yRobo == 1 && jaFoi == true)
-            {
-                yRobo++;
-            }
-            else if (xRobo == 1 && yRobo == 2)
-            {
-                yRobo--;
-                jaFoi = false;
-            }
+                var passoAtualRoboVerde = passosRoboVerde[indicePassoAtualRoboVerde++];
 
-            ImprimeQuadrado(xRobo, yRobo, Brushes.DarkRed);
-            
+
+                ImprimeMatriz(tamanho, matrizRoboVerde);
+                ImprimeQuadrado(passoAtualRoboVerde.X, passoAtualRoboVerde.Y, Brushes.Green);
+            }
         }
 
         private void ImprimeQuadrado(int x, int y, SolidColorBrush cor)
         {
-            var quadrado = CriaQuadrado(tamanho,cor);
+            var quadrado = CriaQuadrado(tamanho, cor);
             Canvas.SetLeft(quadrado, x * tamanho);
             Canvas.SetTop(quadrado, y * tamanho);
             quadrinho.Children.Add(quadrado);
         }
 
-        private void ImprimeMatriz(int tamanho, SolidColorBrush preto, SolidColorBrush branco, int[][] matrizLab)
+        private void ImprimeMatriz(int tamanho, int[][] matrizLab)
         {
             for (int i = 0; i < matrizLab.Length; i++)
             {
@@ -127,7 +97,7 @@ namespace wpf
                     var posicaoCima = tamanho * i;
                     if (matrizLab[i][j] == 1)
                     {
-                        var quadrado = CriaQuadrado(tamanho, preto);
+                        var quadrado = CriaQuadrado(tamanho, Brushes.Black);
                         Canvas.SetLeft(quadrado, posicaoLado);
                         Canvas.SetTop(quadrado, posicaoCima);
                         quadrinho.Children.Add(quadrado);
@@ -135,7 +105,7 @@ namespace wpf
                     }
                     else
                     {
-                        var quadrado = CriaQuadrado(tamanho, branco);
+                        var quadrado = CriaQuadrado(tamanho, Brushes.White);
                         Canvas.SetLeft(quadrado, posicaoLado);
                         Canvas.SetTop(quadrado, posicaoCima);
                         quadrinho.Children.Add(quadrado);

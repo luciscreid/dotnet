@@ -22,8 +22,17 @@ namespace maze
 
         public int Largura { get; private set; }
 
-
-
+        internal bool TaFora(int x, int y)
+        {
+            if (x > Largura
+                     || x <= -1
+                     || y > Altura
+                     || y <= -1)
+            {
+                return true;
+            }
+            return false;
+        }
 
         public bool EhParede(Posicao posicao)
         {

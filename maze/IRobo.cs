@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace maze
 {
-    interface IRobo
+    public interface IRobo
     {
-        int GetPosicao();
-        void GeraPassos();
+        Passo[] GeraPassos(Labirinto labirinto, int maxPassos = 500);
     }
 }
