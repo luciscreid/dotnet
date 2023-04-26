@@ -28,20 +28,22 @@ namespace wpf
         private int tamanho = 20;
         private bool jaFoi = false;
         private RoboVerde roboVerde = new RoboVerde(1, 1);
+        private RoboVermelho roboVermelho = new RoboVermelho(1, 1);
 
         public MainWindow()
         {
             InitializeComponent();
-            RoboVerde();
+            RoboVermelho();
 
             CompositionTarget.Rendering += Draw;
         }
 
-        private void RoboVerde()
-        {
-            var labirinto = new Labirinto(roboVerde.MatrizRoboVerde, 3, 7);
 
-            roboVerde.PassosRoboVerde = roboVerde.GeraPassos(labirinto);
+        private void RoboVermelho()
+        {
+            var labirinto = new Labirinto(roboVermelho.Matriz, 8, 7);
+
+            roboVermelho.Passos = roboVermelho.GeraPassos(labirinto);
         }
 
         private void Draw(object sender, EventArgs e)
@@ -59,15 +61,26 @@ namespace wpf
         private void ExecutaAcao()
         {
             //ImprimeAntigo();
-            if (roboVerde.PassosRoboVerde.Length == roboVerde.IndicePassoAtualRoboVerde)
+        //    if (roboVerde.PassosRoboVerde.Length == roboVerde.IndicePassoAtualRoboVerde)
+        //        MessageBox.Show("Congrats bro!!");
+        //    else
+        //    {
+        //        var passoAtualRoboVerde = roboVerde.[roboVerde.IndicePassoAtualRoboVerde++];
+
+
+        //        ImprimeMatriz(tamanho, roboVerde.MatrizRoboVerde);
+        //        ImprimeQuadrado(passoAtualRoboVerde.X, passoAtualRoboVerde.Y, Brushes.Green);
+        //    }
+
+            if (roboVermelho.Passos.Length == roboVermelho.IndicePassoAtual)
                 MessageBox.Show("Congrats bro!!");
             else
             {
-                var passoAtualRoboVerde = roboVerde.PassosRoboVerde[roboVerde.IndicePassoAtualRoboVerde++];
+                var passoAtual = roboVermelho.Passos[roboVermelho.IndicePassoAtual++];
 
 
-                ImprimeMatriz(tamanho, roboVerde.MatrizRoboVerde);
-                ImprimeQuadrado(passoAtualRoboVerde.X, passoAtualRoboVerde.Y, Brushes.Green);
+                ImprimeMatriz(tamanho, roboVermelho.Matriz);
+               ImprimeQuadrado(passoAtual.X, passoAtual.Y, Brushes.Red);
             }
         }
 

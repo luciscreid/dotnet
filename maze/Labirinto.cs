@@ -34,33 +34,25 @@ namespace maze
             return false;
         }
 
-        public bool EhParede(Posicao posicao)
+        public bool EhParede(int x, int y)
         {
-            if (posicao.X > Altura
-                     || posicao.X <= -1
-                     || posicao.Y > Largura
-                     || posicao.Y <= -1
-                     || matriz[posicao.Y][posicao.X] == 0)
+            if (TaFora(x, y))
             {
                 return false;
             }
-            else if (matriz[posicao.Y][posicao.X] == 1)
+            else if (matriz[y][x] == 1)
             {
                 return true;
             }
             return false;
         }
-        public bool EhCaminho(Posicao posicao)
+        public bool EhCaminho(int x, int y)
         {
-            if (posicao.X > Altura
-                     || posicao.X <= -1
-                     || posicao.Y > Largura
-                     || posicao.Y <= -1
-                     || matriz[posicao.Y][posicao.X] == 1)
+            if (TaFora(x, y))
             {
                 return false;
             }
-            else if (matriz[posicao.Y][posicao.X] == 0)
+            else if (matriz[x][y] == 0)
             {
                 return true;
             }

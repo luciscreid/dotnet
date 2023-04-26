@@ -52,8 +52,8 @@ namespace testeunitario
             var lab = new Labirinto(matriz, 9, 7);
 
             Assert.NotNull(lab);
-            Assert.True(lab.EhParede(new Posicao(0,0)));
-            Assert.False(lab.EhParede(new Posicao(1, 1)));
+            Assert.True(lab.EhParede(0, 0));
+            Assert.False(lab.EhParede(1, 1));
         }
 
         [Fact]
@@ -75,8 +75,8 @@ namespace testeunitario
             var lab = new Labirinto(matriz, 9, 7);
 
             Assert.NotNull(lab);
-            Assert.False(lab.EhParede(new Posicao(20, 30)));
-            Assert.False(lab.EhParede(new Posicao(-1, -1)));
+            Assert.False(lab.EhParede(20, 30));
+            Assert.False(lab.EhParede(-1, -1));
         }
 
         [Fact]
@@ -98,8 +98,8 @@ namespace testeunitario
             var lab = new Labirinto(matriz, 9, 7);
 
             Assert.NotNull(lab);
-            Assert.True(lab.EhCaminho(new Posicao(1,1)));
-            Assert.False(lab.EhCaminho(new Posicao(0, 0)));
+            Assert.True(lab.EhCaminho(1,1));
+            Assert.False(lab.EhCaminho(0, 0));
         }
 
         [Fact]
@@ -121,8 +121,8 @@ namespace testeunitario
             var lab = new Labirinto(matriz, 9, 7);
 
             Assert.NotNull(lab);
-            Assert.False(lab.EhCaminho(new Posicao(-1, -1)));
-            Assert.False(lab.EhCaminho(new Posicao(20, 30)));
+            Assert.False(lab.EhCaminho(-1, -1));
+            Assert.False(lab.EhCaminho(20, 30));
 
         }
     }
