@@ -33,13 +33,13 @@ namespace wpf
         public MainWindow()
         {
             InitializeComponent();
-            RoboVermelho();
+            GerarPassosRoboVermelho();
 
             CompositionTarget.Rendering += Draw;
         }
 
 
-        private void RoboVermelho()
+        private void GerarPassosRoboVermelho()
         {
             var labirinto = new Labirinto(roboVermelho.Matriz, 8, 7);
 
@@ -51,7 +51,7 @@ namespace wpf
             var tempoSalvo = TimeSpan.FromTicks(time.Ticks);
             var tempoAtual = TimeSpan.FromTicks(DateTime.Now.Ticks);
 
-            if (tempoAtual.Subtract(tempoSalvo).Seconds > 1 || time == default)
+            if (tempoAtual.Subtract(tempoSalvo).Milliseconds > 300 || time == default)
             {
                 ExecutaAcao();
                 time = DateTime.Now;
@@ -61,16 +61,16 @@ namespace wpf
         private void ExecutaAcao()
         {
             //ImprimeAntigo();
-        //    if (roboVerde.PassosRoboVerde.Length == roboVerde.IndicePassoAtualRoboVerde)
-        //        MessageBox.Show("Congrats bro!!");
-        //    else
-        //    {
-        //        var passoAtualRoboVerde = roboVerde.[roboVerde.IndicePassoAtualRoboVerde++];
+            //    if (roboVerde.PassosRoboVerde.Length == roboVerde.IndicePassoAtualRoboVerde)
+            //        MessageBox.Show("Congrats bro!!");
+            //    else
+            //    {
+            //        var passoAtualRoboVerde = roboVerde.[roboVerde.IndicePassoAtualRoboVerde++];
 
 
-        //        ImprimeMatriz(tamanho, roboVerde.MatrizRoboVerde);
-        //        ImprimeQuadrado(passoAtualRoboVerde.X, passoAtualRoboVerde.Y, Brushes.Green);
-        //    }
+            //        ImprimeMatriz(tamanho, roboVerde.MatrizRoboVerde);
+            //        ImprimeQuadrado(passoAtualRoboVerde.X, passoAtualRoboVerde.Y, Brushes.Green);
+            //    }
 
             if (roboVermelho.Passos.Length == roboVermelho.IndicePassoAtual)
                 MessageBox.Show("Congrats bro!!");
@@ -80,7 +80,7 @@ namespace wpf
 
 
                 ImprimeMatriz(tamanho, roboVermelho.Matriz);
-               ImprimeQuadrado(passoAtual.X, passoAtual.Y, Brushes.Red);
+                ImprimeImagen(passoAtual.X, passoAtual.Y);
             }
         }
 
@@ -90,6 +90,14 @@ namespace wpf
             Canvas.SetLeft(quadrado, x * tamanho);
             Canvas.SetTop(quadrado, y * tamanho);
             quadrinho.Children.Add(quadrado);
+        }
+
+        private void ImprimeImagen(int x, int y)
+        {
+            var imagem = CriaImagem(@"C:\projetos-cris\estrutura-de-dados\wpf\imagens\C3PO.jpg", tamanho);
+            Canvas.SetLeft(imagem, x * tamanho);
+            Canvas.SetTop(imagem, y * tamanho);
+            quadrinho.Children.Add(imagem);
         }
 
         private void ImprimeMatriz(int tamanho, int[][] matrizLab)
@@ -102,18 +110,18 @@ namespace wpf
                     var posicaoCima = tamanho * i;
                     if (matrizLab[i][j] == 1)
                     {
-                        var quadrado = CriaQuadrado(tamanho, Brushes.Black);
-                        Canvas.SetLeft(quadrado, posicaoLado);
-                        Canvas.SetTop(quadrado, posicaoCima);
-                        quadrinho.Children.Add(quadrado);
+                        var imagem = CriaImagem(@"C:\projetos-cris\estrutura-de-dados\wpf\imagens\brick.jpg", tamanho);
+                        Canvas.SetLeft(imagem, posicaoLado);
+                        Canvas.SetTop(imagem, posicaoCima);
+                        quadrinho.Children.Add(imagem);
 
                     }
                     else
                     {
-                        var quadrado = CriaQuadrado(tamanho, Brushes.White);
-                        Canvas.SetLeft(quadrado, posicaoLado);
-                        Canvas.SetTop(quadrado, posicaoCima);
-                        quadrinho.Children.Add(quadrado);
+                        var imagem = CriaImagem(@"C:\projetos-cris\estrutura-de-dados\wpf\imagens\sand.jpg", tamanho);
+                        Canvas.SetLeft(imagem, posicaoLado);
+                        Canvas.SetTop(imagem, posicaoCima);
+                        quadrinho.Children.Add(imagem);
                     }
                 }
             }
@@ -151,6 +159,18 @@ namespace wpf
             quadrado.Height = tamanho;
             quadrado.Fill = cor;
             return quadrado;
+        }
+
+        private static Image CriaImagem(string srcImage, int tamanho)
+        {
+            var imagem = new Image();
+
+            imagem.Source = new BitmapImage(new Uri(srcImage));
+
+            imagem.Height = tamanho;
+            imagem.Width = tamanho;
+
+            return imagem;
         }
     }
 }

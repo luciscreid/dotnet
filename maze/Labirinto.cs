@@ -24,9 +24,9 @@ namespace maze
 
         internal bool TaFora(int x, int y)
         {
-            if (x > Largura
+            if (x >= Largura
                      || x <= -1
-                     || y > Altura
+                     || y >= Altura
                      || y <= -1)
             {
                 return true;
@@ -52,7 +52,7 @@ namespace maze
             {
                 return false;
             }
-            else if (matriz[x][y] == 0)
+            else if (matriz[y][x] == 0)
             {
                 return true;
             }
