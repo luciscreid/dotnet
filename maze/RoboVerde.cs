@@ -23,7 +23,7 @@ namespace maze
             _posicaoInicial = new Posicao(x, y);
         }
 
-        public Passo[] GeraPassos(Labirinto labirinto, int maxPassos = 50)
+        public Passo[] GeraPassos(Labirinto labirinto, int maxPassos = 100)
         {
             var x = _posicaoInicial.X;
             var y = _posicaoInicial.Y;

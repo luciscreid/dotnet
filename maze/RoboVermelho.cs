@@ -11,16 +11,16 @@ namespace maze
         public Passo[] Passos { get; set; }
         public int IndicePassoAtual { get; set; } = 0;
         public int[][] Matriz { get; } = new int[][]
-{
-    new int[] { 1, 1, 1, 1, 1, 1, 1 },
-    new int[] { 1, 0, 0, 0, 0, 0, 1 },
-    new int[] { 1, 1, 1, 1, 1, 0, 1 },
-    new int[] { 1, 1, 1, 1, 1, 0, 1 },
-    new int[] { 1, 1, 1, 1, 1, 0, 1 },
-    new int[] { 1, 1, 1, 1, 1, 0, 1 },
-    new int[] { 1, 1, 1, 1, 1, 0, 1 },
-    new int[] { 1, 1, 1, 1, 1, 0, 1 },
-};
+        {
+            new int[] { 1, 1, 1, 1, 1, 1, 1 },
+            new int[] { 1, 0, 0, 0, 0, 0, 1 },
+            new int[] { 1, 1, 1, 1, 1, 0, 1 },
+            new int[] { 1, 1, 1, 1, 1, 0, 1 },
+            new int[] { 1, 1, 1, 1, 1, 0, 1 },
+            new int[] { 1, 1, 1, 1, 1, 0, 1 },
+            new int[] { 1, 1, 1, 1, 1, 0, 1 },
+            new int[] { 1, 1, 1, 1, 1, 0, 1 },
+        };
         private Posicao _posicaoInicial;
 
         public RoboVermelho(int x, int y)
@@ -28,7 +28,7 @@ namespace maze
             _posicaoInicial = new Posicao(x, y);
         }
 
-        public Passo[] GeraPassos(Labirinto labirinto, int maxPassos = 50)
+        public Passo[] GeraPassos(Labirinto labirinto, int maxPassos = 100)
         {
             var x = _posicaoInicial.X;
             var y = _posicaoInicial.Y;

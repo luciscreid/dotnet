@@ -29,22 +29,83 @@ namespace wpf
         private bool jaFoi = false;
         private RoboVerde roboVerde = new RoboVerde(1, 1);
         private RoboVermelho roboVermelho = new RoboVermelho(1, 1);
+        private RoboLoteria roboLoteria = new RoboLoteria(1, 1);
+        
 
         public MainWindow()
         {
             InitializeComponent();
-            GerarPassosRoboVermelho();
+            GerarPassosRoboLoteria();
 
             CompositionTarget.Rendering += Draw;
         }
-
-
-        private void GerarPassosRoboVermelho()
+        public int[][] MatrizDoArquivo()
         {
-            var labirinto = new Labirinto(roboVermelho.Matriz, 8, 7);
+            var preto = Brushes.Black;
+            var branco = Brushes.White;
+            var linhas = File.ReadAllLines("./labirinto.txt");
 
-            roboVermelho.Passos = roboVermelho.GeraPassos(labirinto);
+            Console.WriteLine(linhas);
+
+            console.Text = string.Join('\n', linhas);
+
+
+            var dimensao = linhas[0].Split(" ");
+            var altura = int.Parse(dimensao[1]);
+            var largura = int.Parse(dimensao[2]);
+
+            int[][] matrizDoArquivo = new int[altura][];
+            for (int y = 0; y < altura; y++)
+            {
+                var linhaAtual = linhas[y + 3];
+                matrizDoArquivo[y] = new int[largura];
+                for (int x = 0; x < largura; x++)
+                {
+                    if (linhaAtual[x] == '*')
+                    {
+                        matrizDoArquivo[y][x] = 1;
+                    }
+                    else
+                    {
+                        matrizDoArquivo[y][x] = 0;
+                    }
+
+                }
+            }
+
+            //for (int i = 0; i < matrizDoArquivo.Length; i++)
+            //{
+            //    for (int j = 0; j < matrizDoArquivo[i].Length; j++)
+            //    {
+            //        var posicaoLado = tamanho * j;
+            //        var posicaoCima = tamanho * i;
+            //        if (matrizDoArquivo[i][j] == 1)
+            //        {
+            //            var quadrado = CriaQuadrado(tamanho, preto);
+            //            Canvas.SetLeft(quadrado, posicaoLado);
+            //            Canvas.SetTop(quadrado, posicaoCima);
+            //            quadrinho.Children.Add(quadrado);
+            //        }
+            //        else
+            //        {
+            //            var quadrado = CriaQuadrado(tamanho, branco);
+            //            Canvas.SetLeft(quadrado, posicaoLado);
+            //            Canvas.SetTop(quadrado, posicaoCima);
+            //            quadrinho.Children.Add(quadrado);
+            //        }
+            //    }
+            //}
+            return matrizDoArquivo;
         }
+
+
+        private void GerarPassosRoboLoteria()
+        {
+            var labirinto = new Labirinto(MatrizDoArquivo(), 9, 9);
+
+            roboLoteria.Passos = roboLoteria.GeraPassos(labirinto);
+        }
+        
 
         private void Draw(object sender, EventArgs e)
         {
@@ -72,14 +133,14 @@ namespace wpf
             //        ImprimeQuadrado(passoAtualRoboVerde.X, passoAtualRoboVerde.Y, Brushes.Green);
             //    }
 
-            if (roboVermelho.Passos.Length == roboVermelho.IndicePassoAtual)
+            if (roboLoteria.Passos.Length == roboLoteria.IndicePassoAtual)
                 MessageBox.Show("Congrats bro!!");
             else
             {
-                var passoAtual = roboVermelho.Passos[roboVermelho.IndicePassoAtual++];
+                var passoAtual = roboLoteria.Passos[roboLoteria.IndicePassoAtual++];
 
 
-                ImprimeMatriz(tamanho, roboVermelho.Matriz);
+                ImprimeMatriz(tamanho, MatrizDoArquivo());
                 ImprimeImagen(passoAtual.X, passoAtual.Y);
             }
         }
