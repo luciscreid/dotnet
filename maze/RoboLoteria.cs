@@ -19,43 +19,194 @@ namespace maze
             _posicaoInicial = new Posicao(x, y);
         }
 
-        public Passo[] GeraPassos(Labirinto labirinto, int maxPassos = 100)
+        public Passo[] GeraPassos(Labirinto labirinto, int maxPassos = 500)
         {
-            Random numAleatorio = new Random();
             var x = _posicaoInicial.X;
             var y = _posicaoInicial.Y;
             var listaDePassos = new List<Passo>();
+            
 
-            int valorInteiro = numAleatorio.Next(1, 4);
             if (labirinto.TaFora(x, y) == true)
             {
                 return listaDePassos.ToArray();
-            } else 
-                do
+            }
+            while (!labirinto.TaFora(x, y))
+            {
+                Random numAleatorio = new Random();
+                int valorInteiro = numAleatorio.Next(1, 5);
+                if (valorInteiro == 1)
                 {
-                    if (labirinto.EhCaminho(x, y) == true)
+                    y++;
+                    if (labirinto.EhParede(x, y))
                     {
-                        if (valorInteiro == 1)
-                        {
-                            y++;
-                        }
-                        else if (valorInteiro == 2)
-                        {
-                            y--;
-                        }
-                        else if (valorInteiro == 3)
-                        {
-                            x++;
-                        }
-                        else if (valorInteiro == 4)
-                        {
-                            x--;
-                        }
-                        listaDePassos.Add(new Passo(x, y));
+                        y--;
                     }
-                    return listaDePassos.ToArray();
-                } while (!labirinto.TaFora(x, y));
+                    }
+                else if (valorInteiro == 2)
+                {
+                    y--;
+                    if (labirinto.EhParede(x, y))
+                    {
+                        y++;
+                    }
+                }
+                else if (valorInteiro == 3)
+                {
+                    x++;
+                    if (labirinto.EhParede(x, y))
+                    {
+                        x--;
+                    }
+                }
+                else if (valorInteiro == 4)
+                {
+                    x--;
+                    if (labirinto.EhParede(x, y))
+                    {
+                        x++;
+                    }
+                }
 
+                listaDePassos.Add(new Passo(x, y));
+                if (maxPassos < listaDePassos.Count)
+                    break;
+            }
+            return listaDePassos.ToArray();
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//if (labirinto.EhParede(x, y))
+//{
+//    if (valorInteiro == 1)
+//    {
+//        y--;
+//    }
+//    else if (valorInteiro == 2)
+//    {
+//        y++;
+//    }
+//    else if (valorInteiro == 3)
+//    {
+//        x--;
+//    }
+//    else if (valorInteiro == 4)
+//    {
+//        x++;
+//    }
+//}
