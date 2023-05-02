@@ -25,11 +25,12 @@ namespace wpf
         private DateTime time;
         private int xRobo;
         private int yRobo;
-        private int tamanho = 20;
+        private int tamanho = 10;
         private bool jaFoi = false;
         private RoboVerde roboVerde = new RoboVerde(1, 1);
         private RoboVermelho roboVermelho = new RoboVermelho(1, 1);
         private RoboLoteria roboLoteria = new RoboLoteria(1, 1);
+        private RoboSemCaminho roboSemCaminho = new maze.RoboSemCaminho(1, 1);
         
 
         public MainWindow()
@@ -43,7 +44,7 @@ namespace wpf
         {
             var preto = Brushes.Black;
             var branco = Brushes.White;
-            var linhas = File.ReadAllLines("./labirinto.txt");
+            var linhas = File.ReadAllLines("./labirinto1.txt");
 
             Console.WriteLine(linhas);
 
@@ -101,9 +102,9 @@ namespace wpf
 
         private void GerarPassosRoboLoteria()
         {
-            var labirinto = new Labirinto(MatrizDoArquivo(), 9, 9);
+            var labirinto = new Labirinto(MatrizDoArquivo(), 15, 44);
 
-            roboLoteria.Passos = roboLoteria.GeraPassos(labirinto);
+            roboSemCaminho.Passos = roboSemCaminho.GeraPassos(labirinto);
         }
         
 
@@ -133,11 +134,11 @@ namespace wpf
             //        ImprimeQuadrado(passoAtualRoboVerde.X, passoAtualRoboVerde.Y, Brushes.Green);
             //    }
 
-            if (roboLoteria.Passos.Length == roboLoteria.IndicePassoAtual)
+            if (roboSemCaminho.Passos.Length == roboSemCaminho.IndicePassoAtual)
                 MessageBox.Show("Congrats bro!!");
             else
             {
-                var passoAtual = roboLoteria.Passos[roboLoteria.IndicePassoAtual++];
+                var passoAtual = roboSemCaminho.Passos[roboSemCaminho.IndicePassoAtual++];
 
 
                 ImprimeMatriz(tamanho, MatrizDoArquivo());

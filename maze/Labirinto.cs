@@ -50,6 +50,7 @@ namespace maze
             }
             return false;
         }
+        
         public bool EhCaminho(int x, int y)
         {
             if (TaFora(x, y))

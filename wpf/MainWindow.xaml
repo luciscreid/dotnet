@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="800" Width="1024">
     <Grid>
         <Canvas x:Name ="quadrinho" />
         <TextBlock Text="TextBlock" TextWrapping="Wrap" x:Name="console" Margin="572,0,0,0"/>
